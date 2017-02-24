@@ -185,8 +185,12 @@ public class PokemonCpUtils {
 	 * @return Amount of stardust
 	 */
 	public static int getStartdustCostsForPowerup(double combinedCpMultiplier) {
-		int level = (int) getLevelFromCpMultiplier(combinedCpMultiplier);
-		return PokemonMeta.upgradeSettings.getStardustCost(level);
+		try {
+			int level = (int) getLevelFromCpMultiplier(combinedCpMultiplier);
+			return PokemonMeta.upgradeSettings.getStardustCost(level);
+		}catch (IndexOutOfBoundsException e) {
+			return 0;
+		}
 	}
 
 	/**
