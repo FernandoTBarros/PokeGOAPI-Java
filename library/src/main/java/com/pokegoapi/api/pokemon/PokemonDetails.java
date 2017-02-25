@@ -6,8 +6,12 @@ import POGOProtos.Enums.PokemonFamilyIdOuterClass;
 import POGOProtos.Enums.PokemonIdOuterClass;
 import POGOProtos.Enums.PokemonMoveOuterClass.PokemonMove;
 import POGOProtos.Inventory.Item.ItemIdOuterClass.ItemId;
+import POGOProtos.Settings.Master.Pokemon.EvolutionBranchOuterClass.EvolutionBranch;
 import POGOProtos.Settings.Master.Pokemon.StatsAttributesOuterClass;
 import POGOProtos.Settings.Master.PokemonSettingsOuterClass;
+
+import java.util.List;
+
 import com.pokegoapi.api.PokemonGo;
 import com.pokegoapi.exceptions.NoSuchItemException;
 import com.pokegoapi.main.PokemonMeta;
@@ -269,7 +273,16 @@ public class PokemonDetails {
 	}
 
 	public int getCandiesToEvolve() {
-		return getSettings().getCandyToEvolve();
+		Evolution evolution = Evolutions.getEvolution(pokemonId);
+		if(evolution.getEvolutionBranch()!=null && evolution.getEvolutionBranch().size()>0) {
+			return evolution.getEvolutionBranch().get(0).getCandyCost();
+		}
+		return 0;
+	}
+	
+	public List<EvolutionBranch> getEvolutionBranch() {
+		Evolution evolution = Evolutions.getEvolution(pokemonId);
+		return evolution.getEvolutionBranch();
 	}
 
 	public double getBaseFleeRate() {
