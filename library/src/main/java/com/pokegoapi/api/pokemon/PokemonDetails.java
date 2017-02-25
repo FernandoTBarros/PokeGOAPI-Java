@@ -239,9 +239,9 @@ public class PokemonDetails {
 	}
 
 	/**
-	 * Checks whether the Pokémon is set as favorite.
+	 * Checks whether the Pokemon is set as favorite.
 	 *
-	 * @return true if the Pokémon is set as favorite
+	 * @return true if the Pokemon is set as favorite
 	 */
 	public boolean isFavorite() {
 		return favorite > 0;
@@ -272,9 +272,13 @@ public class PokemonDetails {
 		return getSettings().getEncounter().getBaseCaptureRate();
 	}
 
+	/**
+	 * Return the amount of candies necessary to evolve this pokemon
+	 * @return candy needed to evolve
+	 */
 	public int getCandiesToEvolve() {
 		Evolution evolution = Evolutions.getEvolution(pokemonId);
-		if(evolution.getEvolutionBranch()!=null && evolution.getEvolutionBranch().size()>0) {
+		if (evolution.getEvolutionBranch() != null && evolution.getEvolutionBranch().size() > 0) {
 			return evolution.getEvolutionBranch().get(0).getCandyCost();
 		}
 		return 0;

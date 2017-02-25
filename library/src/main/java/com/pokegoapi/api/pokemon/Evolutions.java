@@ -38,8 +38,7 @@ public class Evolutions {
 			if (template.hasPokemonSettings()) {
 				PokemonSettings settings = template.getPokemonSettings();
 				PokemonId pokemon = settings.getPokemonId();
-				if(!EVOLUTIONS.containsKey(pokemon))
-				{
+				if (!EVOLUTIONS.containsKey(pokemon)) {
 					addEvolution(null, pokemon);
 				}
 			}
@@ -47,10 +46,10 @@ public class Evolutions {
 	}
 	
 	/**
-	 * Returns the evolution data for the given pokemon
+	 * Auxiliar method to add the evolution by recursion in the EVOLUTIONS Map
 	 *
-	 * @param pokemon the pokemon to get data for
-	 * @return the evolution data
+	 * @param parent the parent of this pokemon
+	 * @param pokemon the pokemon that evolution will be added
 	 */
 	private static void addEvolution(PokemonId parent, PokemonId pokemon) {
 		Evolution evolution = new Evolution(parent, pokemon);
